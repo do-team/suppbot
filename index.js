@@ -42,7 +42,7 @@ exports.handler = function(event, context) {
         }  
         else
         {
-           context.succeed('You sent: ' + event.text);
+           context.succeed('It seems you sent this: ' + event.text);
         }
     }
 };
