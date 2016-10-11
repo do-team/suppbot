@@ -13,7 +13,7 @@ exports.handler = function(event, context) {
         }
 
         if(event.text.toLowerCase().indexOf('github') !== -1){
-                    context.succeed(' Du bist aber neugirich about ' + event.text);
+                    context.succeed('Du bist aber neugirich about ' + event.text);
         }
 
         if(event.text.toLowerCase().indexOf('db') !== -1){
