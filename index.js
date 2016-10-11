@@ -13,7 +13,7 @@ exports.handler = function(event, context) {
         }
 
         if(event.text.toLowerCase().indexOf('github') !== -1){
-                    context.succeed('Du bist aber neugirich about ' + event.text);
+                    axios.get('https://api.github.com/search/repositories?q=do-team&sort=stars&order=desc');
         }
 
         if(event.text.toLowerCase().indexOf('db') !== -1){
