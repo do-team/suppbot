@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var axios = require('axios');
 
 exports.handler = function(event, context) {
 
@@ -9,7 +10,12 @@ exports.handler = function(event, context) {
     {
         if(event.text.toLowerCase().indexOf('david') !== -1){
             context.succeed(' hello ' + event.text);
-        }  
+        }
+
+        if(event.text.toLowerCase().indexOf('github') !== -1){
+                    context.succeed(' Du bist aber neugirich about ' + event.text);
+        }
+
         if(event.text.toLowerCase().indexOf('db') !== -1){
             
            
