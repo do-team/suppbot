@@ -29,11 +29,11 @@ exports.handler = function(event, context) {
                         {
                             if(rows.length > 0)
                             {
-                                context.succeed(rows[0].business_id);
+                                context.succeed('Business ID of member '+member+' is '+rows[0].business_id+'.');
                             }
                             else
                             {
-                                context.succeed('no rows found');
+                                context.succeed('Member ID was not found.');
                             }
                             connection.end();
                         }
