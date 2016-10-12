@@ -1,5 +1,4 @@
 var mysql = require('mysql');
-var axios = require('axios');
 
 exports.handler = function(event, context) {
 
@@ -8,47 +7,39 @@ exports.handler = function(event, context) {
     }
     else 
     {
-        if(event.text.toLowerCase().indexOf('david') !== -1){
-            context.succeed(' hello ' + event.text);
-        }
-
-        if(event.text.toLowerCase().indexOf('github') !== -1){
-                    axios.get('https://api.github.com/search/repositories?q=do-team&sort=stars&order=desc');
-        }
-
-        if(event.text.toLowerCase().indexOf('db') !== -1){
-            
-           
-           var connection =  mysql.createConnection({
+        var member = event.text;
+        var connection =  mysql.createConnection({
           host   : 'futuredb.cbhsjvpjrptr.us-west-2.rds.amazonaws.com',
           user   : 'marty',
           password : 'martymarty',
           database : 'Member'
         });
-           
-            
-            connection.connect(function(err){
+       connection.connect(function(err){
                 if(err){
                     context.fail('Database connection failed' + err);
                 }    
-                else{
-                connection.query("SELECT business_id FROM members WHERE member_id='MMXAM'",function(err,rows,fields){
+                else
+                {
+                    connection.query("SELECT business_id FROM members WHERE member_id='"+member+"'",function(err,rows,fields){
                         if(err)
                         {
-                           context.fail('Cannot read from database!' + err); 
+                           context.fail('Cannot read from database!' + err);
                         }
                         else
                         {
-                            context.succeed(rows[0]);
+                            if(rows.length > 0)
+                            {
+                                context.succeed(rows[0].business_id);
+                            }
+                            else
+                            {
+                                context.succeed('no rows found');
+                            }
                             connection.end();
                         }
                     });
-                }
+               }
             });
-        }  
-        else
-        {
-           context.succeed('It seems you sent this: ' + event.text + ', right?');
-        }
+
     }
 };
