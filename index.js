@@ -33,7 +33,7 @@ exports.handler = function(event, context) {
                             }
                             else
                             {
-                                context.succeed('Member ID was not found.');
+                                context.succeed('Member ID '+member+' was not found, sorry :thinking_face:.');
                             }
                             connection.end();
                         }
