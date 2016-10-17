@@ -1,24 +1,5 @@
 var mysql = require('mysql');
 
-var VERIFY_TOKEN = "blablabla";
-
-exports.handler = (event, context, callback) => {
-
-  // process GET request
-  if(event.params && event.params.querystring){
-    var queryParams = event.params.querystring;
-
-    var rVerifyToken = queryParams['hub.verify_token']
-
-    if (rVerifyToken === VERIFY_TOKEN) {
-      var challenge = queryParams['hub.challenge']
-      callback(null, parseInt(challenge))
-    }else{
-      callback(null, 'Error, wrong validation token');
-    }
-  }
-}
-
 
 exports.handler = function(event, context) {
 
