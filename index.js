@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 
+var VERIFY_TOKEN = "blablabla";
+
 exports.handler = function(event, context) {
 
     if (event === null || event.text === null) {
