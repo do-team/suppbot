@@ -1,21 +1,17 @@
 var mysql = require('mysql');
 
-function connectionStart() {
-    var connection = mysql.createConnection({
-        host: process.env.SUPP_DB_URL,
-        database: process.env.SUPP_DB_NAME,
-        user: process.env.SUPP_DB_USER,
-        password: process.env.SUPP_DB_PASSWORD,
-    });
-}
-
 exports.handler = function(event, context) {
 
     if (event === null || event.text === null) {
         context.succeed('You sent nothing!');
     } else {
         var member = event.text;
-        var connection = connectionStart();
+        var connection = mysql.createConnection({
+            host: process.env.SUPP_DB_URL,
+            user: process.env.SUPP_DB_USER,
+            password: process.env.SUPP_DB_PASSWORD,
+            database: process.env.SUPP_DB_NAME,
+        });
         connection.connect(function(err) {
             if (err) {
                 context.fail('Database connection failed' + err);

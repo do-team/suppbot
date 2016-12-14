@@ -1,0 +1,13 @@
+{
+  "name": "suppbot",
+  "version": "1.0.0",
+  "description": "Prototype of support bot for Slack interface.",
+  "repository": "https://github.com/do-team/suppbot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "mysql": "2.12.0"
+  }
+}
